@@ -2,7 +2,7 @@ language: julia
 os:
   - linux
 julia:
-  - 0.6
+  - 1.0
 notifications:
   email: false
 git:
@@ -25,3 +25,12 @@ before_script:
 script:
   - julia build_tarballs.jl
 
+deploy:
+  provider: releases
+  api_key: $GH_TOKEN
+  file_glob: true
+  file: products/*
+  skip_cleanup: true
+  on:
+    repo: floswald/TasBuilder
+    tags: true
